@@ -1,0 +1,3 @@
+phidata
+google-generativeai
+duckduckgo-search
