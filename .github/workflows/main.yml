@@ -1,0 +1,28 @@
+name: Daily Startup Hunter
+
+on:
+  schedule:
+    # Yeh UTC time hai. 03:30 UTC = 9:00 AM IST (India Time)
+    - cron: '30 3 * * *'
+  workflow_dispatch: # Iska matlab tu button daba ke bhi chala sakta hai test karne ke liye
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - name: Install Libraries
+        run: pip install -r requirements.txt
+
+      - name: Run Agent
+        env:
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+        run: python main.py
