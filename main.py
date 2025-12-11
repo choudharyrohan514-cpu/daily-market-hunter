@@ -13,7 +13,7 @@ if not api_key:
 today_date = datetime.now().strftime("%Y-%m-%d")
 
 agent = Agent(
-    model=Gemini(id="gemini-1.5-pro", api_key=api_key),
+    model=Gemini(id="gemini-1.5-flash", api_key=api_key),
     tools=[DuckDuckGo()],
     markdown=True,
 )
@@ -32,3 +32,4 @@ Output Format:
 
 print(f"--- Running Report for {today_date} ---")
 agent.print_response(query, stream=False)
+
